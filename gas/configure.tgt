@@ -107,6 +107,7 @@ case ${cpu} in
   sparclet*)		cpu_type=sparc arch=sparclet ;;
   sparclite*)		cpu_type=sparc arch=sparclite ;;
   sparc*)		cpu_type=sparc arch=sparclite ;; # ??? See tc-sparc.c.
+  subleq*)		cpu_type=subleq ;;
   tilegx*be)		cpu_type=tilegx endian=big ;;
   tilegx*)		cpu_type=tilegx endian=little ;;
   v850*)		cpu_type=v850 ;;
@@ -393,6 +394,8 @@ case ${generic_target} in
   sparc-*-*bsd*)			fmt=elf em=nbsd ;;
 
   spu-*-elf)				fmt=elf ;;
+
+  subleq-*-*)				fmt=elf ;;
 
   tic30-*-*coff*)			fmt=coff bfd_gas=yes ;;
   tic4x-*-* | c4x-*-*)			fmt=coff bfd_gas=yes ;;

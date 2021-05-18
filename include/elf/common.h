@@ -423,6 +423,9 @@
 
 #define EM_XSTORMY16		0xad45
 
+/* SUBLEQ */
+#define EM_SUBLEQ 0xc91f
+
 /* mn10200 and mn10300 backend magic numbers.
    Written in the absense of an ABI.  */
 #define EM_CYGNUS_MN10300	0xbeef

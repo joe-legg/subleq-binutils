@@ -1,0 +1,6 @@
+ARCH=subleq
+SCRIPT_NAME=elf32subleq
+TEMPLATE_NAME=elf
+OUTPUT_FORMAT="elf32-subleq"
+ENTRY=_start
+TEXT_START_ADDR=0x0000

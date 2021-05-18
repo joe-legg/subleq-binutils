@@ -885,6 +885,8 @@ sparc*-*-*)		targ_emul=elf32_sparc
 			;;
 spu-*-elf*)		targ_emul=elf32_spu
 			;;
+subleq-*-*)		targ_emul=elf32subleq
+			;;
 tic30-*-*coff*)		targ_emul=tic30coff
 			targ_extra_ofiles=
 			;;
