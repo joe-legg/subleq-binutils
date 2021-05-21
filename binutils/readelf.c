@@ -149,6 +149,7 @@
 #include "elf/sh.h"
 #include "elf/sparc.h"
 #include "elf/spu.h"
+#include "elf/subleq.h"
 #include "elf/tic6x.h"
 #include "elf/tilegx.h"
 #include "elf/tilepro.h"
@@ -934,6 +935,7 @@ guess_is_rela (unsigned int e_machine)
     case EM_SPARC32PLUS:
     case EM_SPARCV9:
     case EM_SPU:
+    case EM_SUBLEQ:
     case EM_TI_C6000:
     case EM_TILEGX:
     case EM_TILEPRO:
@@ -1373,6 +1375,9 @@ dump_relocations (Filedata *          filedata,
 	  rtype = elf_spu_reloc_type (type);
 	  break;
 
+	case EM_SUBLEQ:
+	  rtype = elf_subleq_reloc_type (type);
+	  break;
 	case EM_V800:
 	  rtype = v800_reloc_type (type);
 	  break;
@@ -2621,6 +2626,7 @@ get_machine_name (unsigned e_machine)
     case EM_ADAPTEVA_EPIPHANY:	return "Adapteva EPIPHANY";
     case EM_CYGNUS_FRV:		return "Fujitsu FR-V";
     case EM_S12Z:               return "Freescale S12Z";
+    case EM_SUBLEQ:			return "subleq";
 
     default:
       snprintf (buff, sizeof (buff), _("<unknown>: 0x%x"), e_machine);
@@ -13640,6 +13646,8 @@ is_32bit_abs_reloc (Filedata * filedata, unsigned int reloc_type)
       return reloc_type == 1; /* R_XTENSA_32.  */
     case EM_Z80:
       return reloc_type == 6; /* R_Z80_32.  */
+    case EM_SUBLEQ:
+      return reloc_type == 1; /* R_SUBLEQ_32.  */
     default:
       {
 	static unsigned int prev_warn = 0;
@@ -14116,6 +14124,7 @@ is_none_reloc (Filedata * filedata, unsigned int reloc_type)
     case EM_SPARC32PLUS:
     case EM_SPARC:   /* R_SPARC_NONE.  */
     case EM_SPARCV9:
+    case EM_SUBLEQ:  /* R_SUBLEQ_NONE.  */
     case EM_TILEGX:  /* R_TILEGX_NONE.  */
     case EM_TILEPRO: /* R_TILEPRO_NONE.  */
     case EM_TI_C6000:/* R_C6000_NONE.  */

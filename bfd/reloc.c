@@ -1978,6 +1978,11 @@ ENUMDOC
   SPU Relocations.
 
 ENUM
+  BFD_RELOC_SUBLEQ_32
+ENUMDOC
+  SUBLEQ relocations.
+
+ENUM
   BFD_RELOC_ALPHA_GPDISP_HI16
 ENUMDOC
   Alpha ECOFF and ELF relocations.  Some of these treat the symbol or

@@ -22,6 +22,8 @@
 #ifndef TC_SUBLEQ_H
 #define TC_SUBLEQ_H
 
+#define TC_SUBLEQ
+
 #define TARGET_FORMAT "elf32-subleq"
 #define TARGET_ARCH bfd_arch_subleq
 

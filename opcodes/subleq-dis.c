@@ -19,4 +19,34 @@
    Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston,
    MA 02110-1301, USA.  */
 
-// TODO
+#include "sysdep.h"
+#include "disassemble.h"
+#include "bfd.h"
+#include "opcode/subleq.h"
+
+int
+print_insn_subleq (bfd_vma addr, struct disassemble_info *info)
+{
+  /* Buffer to read the instruction into.  */
+  bfd_byte insn_buf[SUBLEQ_INSN_SIZE];
+
+  int err = (*info->read_memory_func) (addr, insn_buf, SUBLEQ_INSN_SIZE, info);
+
+  if (err)
+    {
+      (*info->memory_error_func) (err, addr, info);
+      return -1;
+    }
+
+  unsigned long a;
+  unsigned long b;
+  unsigned long c;
+
+  a = bfd_getl32 (insn_buf);
+  b = bfd_getl32 (insn_buf + SUBLEQ_OPERAND_SIZE);
+  c = bfd_getl32 (insn_buf + SUBLEQ_OPERAND_SIZE * 2);
+
+  (*info->fprintf_func) (info->stream, "subleq %#0lx %#0lx %#0lx", a, b, c);
+
+  return SUBLEQ_INSN_SIZE;
+}
