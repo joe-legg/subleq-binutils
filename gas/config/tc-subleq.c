@@ -32,6 +32,9 @@ const char FLT_CHARS[] = "";
 
 const pseudo_typeS md_pseudo_table[] = { { 0, 0, 0 } };
 
+/* Endianness. */
+extern int target_big_endian;
+
 void
 md_operand (expressionS *op ATTRIBUTE_UNUSED)
 {
@@ -42,6 +45,15 @@ md_operand (expressionS *op ATTRIBUTE_UNUSED)
 void
 md_begin (void)
 {
+}
+
+void
+md_number_to_chars (char *ptr, valueT val, int nbytes)
+{
+  if (target_big_endian)
+    number_to_chars_bigendian (ptr, val, nbytes);
+  else
+    number_to_chars_littleendian (ptr, val, nbytes);
 }
 
 static int
@@ -157,17 +169,40 @@ md_estimate_size_before_relax (fragS *fragp ATTRIBUTE_UNUSED,
 /* Options */
 
 const char md_shortopts[] = "";
-struct option md_longopts[] = {};
+
+enum options
+{
+  OPTION_EB = OPTION_MD_BASE,
+  OPTION_EL
+};
+
+struct option md_longopts[] = { { "EB", no_argument, NULL, OPTION_EB },
+                                { "EL", no_argument, NULL, OPTION_EL },
+                                { NULL, no_argument, NULL, 0 } };
+
 size_t md_longopts_size = sizeof (md_longopts);
 
 int
-md_parse_option (int c ATTRIBUTE_UNUSED, const char *arg ATTRIBUTE_UNUSED)
+md_parse_option (int c, const char *arg ATTRIBUTE_UNUSED)
 {
-  return 0;
+  switch (c)
+    {
+    case OPTION_EB:
+      target_big_endian = 1;
+      break;
+    case OPTION_EL:
+      target_big_endian = 0;
+      break;
+    default:
+      return 0;
+    }
+  return 1;
 }
 
 void
 md_show_usage (FILE *stream)
 {
-  fprintf (stream, "\nNo options currently avaliable for subleq.\n");
+  fprintf (stream, _ ("\
+  -EB                     assemble for a big endian system (default)\n\
+  -EL                     assemble for a little endian system\n"));
 }

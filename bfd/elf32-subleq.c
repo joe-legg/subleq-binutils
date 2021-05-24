@@ -113,8 +113,10 @@ subleq_info_to_howto_rela (bfd *abfd,
 #define ELF_MACHINE_CODE EM_SUBLEQ
 #define ELF_MAXPAGESIZE 1
 
-#define TARGET_LITTLE_SYM subleq_elf32_vec
-#define TARGET_LITTLE_NAME "elf32-subleq"
+#define TARGET_BIG_SYM subleq_elf32_be_vec
+#define TARGET_BIG_NAME "elf32-bigsubleq"
+#define TARGET_LITTLE_SYM subleq_elf32_le_vec
+#define TARGET_LITTLE_NAME "elf32-littlesubleq"
 
 #define elf_info_to_howto subleq_info_to_howto_rela
 #define elf_info_to_howto_rel NULL

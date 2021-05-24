@@ -22,15 +22,14 @@
 #ifndef TC_SUBLEQ_H
 #define TC_SUBLEQ_H
 
-#define TC_SUBLEQ
+#define TC_SUBLEQ 1
 
-#define TARGET_FORMAT "elf32-subleq"
+#define TARGET_FORMAT \
+  (target_big_endian ? "elf32-bigsubleq" : "elf32-littlesubleq")
 #define TARGET_ARCH bfd_arch_subleq
 
-/* Little endian */
-#define TARGET_BYTES_BIG_ENDIAN 0
-
-#define md_number_to_chars number_to_chars_littleendian
+/* Default to big endian */
+#define TARGET_BYTES_BIG_ENDIAN 1
 
 #define WORKING_DOT_WORD
 

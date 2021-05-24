@@ -42,9 +42,12 @@ print_insn_subleq (bfd_vma addr, struct disassemble_info *info)
   unsigned long b;
   unsigned long c;
 
-  a = bfd_getl32 (insn_buf);
-  b = bfd_getl32 (insn_buf + SUBLEQ_OPERAND_SIZE);
-  c = bfd_getl32 (insn_buf + SUBLEQ_OPERAND_SIZE * 2);
+  bfd_vma (*get32) (const void *)
+      = info->endian == BFD_ENDIAN_BIG ? bfd_getb32 : bfd_getl32;
+
+  a = get32 (insn_buf);
+  b = get32 (insn_buf + SUBLEQ_OPERAND_SIZE);
+  c = get32 (insn_buf + SUBLEQ_OPERAND_SIZE * 2);
 
   (*info->fprintf_func) (info->stream, "subleq %#0lx %#0lx %#0lx", a, b, c);
 

@@ -1317,7 +1317,8 @@ case "${targ}" in
     ;;
 
   subleq-*-*)
-    targ_defvec=subleq_elf32_vec
+    targ_defvec=subleq_elf32_be_vec
+    targ_selvecs=subleq_elf32_le_vec
     ;;
 
   tic6x-*-elf)

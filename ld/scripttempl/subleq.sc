@@ -11,7 +11,7 @@ cat << EOF
    are permitted in any medium without royalty provided the copyright
    notice and this notice are preserved.  */
 
-OUTPUT_FORMAT("${OUTPUT_FORMAT}")
+OUTPUT_FORMAT("${OUTPUT_FORMAT}", "${BIG_OUTPUT_FORMAT}", "${LITTLE_OUTPUT_FORMAT}")
 OUTPUT_ARCH("${ARCH}")
 SECTIONS
 {

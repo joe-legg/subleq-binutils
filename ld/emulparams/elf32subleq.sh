@@ -1,6 +1,8 @@
 SCRIPT_NAME=subleq
 TEMPLATE_NAME=elf
-OUTPUT_FORMAT="elf32-subleq"
+OUTPUT_FORMAT="elf32-bigsubleq"
+BIG_OUTPUT_FORMAT="elf32-bigsubleq"
+LITTLE_OUTPUT_FORMAT="elf32-littlesubleq"
 TEXT_START_ADDR=0x0
 ARCH=subleq
 EMBEDDED=yes
